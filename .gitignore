@@ -1,5 +1,5 @@
 *.swp
 Makefile
 *.gz
-Catalyst-TraitFor-Controller-DBIC-DoesPaging-*
+Web-Util-DBIC-Paging-*
 .build
