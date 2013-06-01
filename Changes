@@ -1,8 +1,9 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+ - simple_search now uses equality instead of -like for non char columns
 
 0.001000  2013-05-28 09:11:37 CST6CDT
-       - Initial Release (factored out of
-         Catalyst::TraitFor::Controller::DBIC::DoesPaging)
+ - Initial Release (factored out of
+   Catalyst::TraitFor::Controller::DBIC::DoesPaging)
 

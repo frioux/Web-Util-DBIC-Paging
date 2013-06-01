@@ -80,6 +80,11 @@ SIMPLE_SEARCH: {
    $data = [simple_search(raw => { bill => ['oo', 'ubu'] }, $rs)->all];
    is scalar(grep { $_->bill =~ m/oo|ubu/ } @{$data}),
       scalar(@{$data}), 'simple search found the right results';
+
+   $data = [simple_search(raw => { id => 2 }, $rs)->all];
+   is scalar @$data, 1, 'simple search on id';
+   is scalar(grep { $_->id == 2 } @{$data}),
+      scalar(@{$data}), 'simple search found the right results (id)';
 }
 
 SIMPLE_SORT: {
