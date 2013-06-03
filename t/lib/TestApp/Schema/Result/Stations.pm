@@ -5,7 +5,11 @@ use warnings;
 
 __PACKAGE__->load_components('Core');
 __PACKAGE__->table('Station');
-__PACKAGE__->add_columns(qw/ id bill ted /);
+__PACKAGE__->add_columns(
+    id   => { data_type => 'integer' },
+    bill => { data_type => 'varchar' },
+    ted  => { data_type => 'varchar' }
+);
 __PACKAGE__->set_primary_key('id');
 
 sub TO_JSON {
