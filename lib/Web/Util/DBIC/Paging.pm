@@ -100,9 +100,10 @@ sub simple_search {
          my $src = $rs->result_source;
          if (
             $src->has_column($_) &&
-            ($src->column_info($_)->{type}||'') =~ m/char/i
+            ($src->column_info($_)->{data_type}||'') =~ m/char/i
          ) {
-            $searches->{$rs->current_source_alias.q{.}.$_} = { -like => "%$v%" }
+            $searches->{$rs->current_source_alias.q{.}.$_} =
+                { -like => ref $v ? [ map "%$_%", @$v ] : "%$v%" }
          } else {
             $searches->{$rs->current_source_alias.q{.}.$_} = $v
          }

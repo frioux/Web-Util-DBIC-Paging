@@ -74,12 +74,14 @@ SORT: {
 
 SIMPLE_SEARCH: {
    my $data = [simple_search(raw => { bill => 'oo' }, $rs)->all];
+   isnt scalar(@{$data}),0, "simple search found the right results (count > 0)";
    is scalar(grep { $_->bill =~ m/oo/ } @{$data}),
-      scalar(@{$data}), 'simple search found the right results';
+      scalar(@{$data}), 'simple search found the right results (single)';
 
    $data = [simple_search(raw => { bill => ['oo', 'ubu'] }, $rs)->all];
+   isnt scalar(@{$data}),0, "simple search found the right results (count > 0)";
    is scalar(grep { $_->bill =~ m/oo|ubu/ } @{$data}),
-      scalar(@{$data}), 'simple search found the right results';
+      scalar(@{$data}), 'simple search found the right results (a OR b)';
 
    $data = [simple_search(raw => { id => 2 }, $rs)->all];
    is scalar @$data, 1, 'simple search on id';
