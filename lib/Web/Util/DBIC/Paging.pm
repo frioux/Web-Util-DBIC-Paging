@@ -102,7 +102,8 @@ sub simple_search {
             $src->has_column($_) &&
             ($src->column_info($_)->{data_type}||'') =~ m/char/i
          ) {
-            $searches->{$rs->current_source_alias.q{.}.$_} = { -like => "%$v%" }
+            $searches->{$rs->current_source_alias.q{.}.$_} =
+                { -like => ref $v ? [ map "%$_%", @$v ] : "%$v%" }
          } else {
             $searches->{$rs->current_source_alias.q{.}.$_} = $v
          }
