@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.001003  2013-06-26 17:32:02 CST6CDT
  - Make simple_search search TEXT fields with -like (Gabriel Andrade)
 
 0.001002  2013-06-03 15:27:18 CST6CDT
