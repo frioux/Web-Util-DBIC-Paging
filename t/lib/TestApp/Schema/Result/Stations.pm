@@ -8,7 +8,7 @@ __PACKAGE__->table('Station');
 __PACKAGE__->add_columns(
     id   => { data_type => 'integer' },
     bill => { data_type => 'varchar' },
-    ted  => { data_type => 'varchar' }
+    ted  => { data_type => 'text' },
 );
 __PACKAGE__->set_primary_key('id');
 

@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+ - Make simple_search search TEXT fields with -like (Gabriel Andrade)
 
 0.001002  2013-06-03 15:27:18 CST6CDT
  - Fix a few more simple_search issues (with like and arrayrefs) (ChinaXing)
