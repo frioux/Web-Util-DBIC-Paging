@@ -14,6 +14,8 @@ use Sub::Exporter::Progressive -setup => {
    },
 };
 
+my $error = 'object passed is not a ::ResultSet, was a result passed thanks to wantarray?';
+
 sub page_and_sort {
    my ($type, $foo, $rs, $config) = @_;
    $rs = sort_rs($type, $foo, $rs);
@@ -22,6 +24,8 @@ sub page_and_sort {
 
 sub paginate {
    my ($type, $foo, $resultset, $config) = @_;
+
+   die $error unless $resultset->isa('DBIx::Class::ResultSet');
 
    $config ||= {};
 
@@ -41,6 +45,9 @@ sub paginate {
 
 sub search {
    my ($type, $foo, $rs, $config) = @_;
+
+   die $error unless $rs->isa('DBIx::Class::ResultSet');
+
    if ($rs->can('controller_search')) {
       my $q = _params_for($type, $foo);
       return $rs->controller_search($q);
@@ -51,6 +58,9 @@ sub search {
 
 sub sort_rs {
    my ($type, $foo, $rs) = @_;
+
+   die $error unless $rs->isa('DBIx::Class::ResultSet');
+
    if ($rs->can('controller_sort')) {
       my $q = _params_for($type, $foo);
       return $rs->controller_sort($q);
@@ -61,6 +71,8 @@ sub sort_rs {
 
 sub simple_deletion {
    my ($type, $foo, $rs) = @_;
+
+   die $error unless $rs->isa('DBIx::Class::ResultSet');
 
    my $params = _params_for($type, $foo);
    # param names should be configurable
@@ -86,6 +98,8 @@ sub simple_deletion {
 
 sub simple_search {
    my ($type, $foo, $rs, $config) = @_;
+
+   die $error unless $rs->isa('DBIx::Class::ResultSet');
 
    $config ||= {};
 
@@ -117,6 +131,8 @@ sub simple_search {
 
 sub simple_sort {
    my ($type, $foo, $rs) = @_;
+
+   die $error unless $rs->isa('DBIx::Class::ResultSet');
 
    my $params = _params_for($type, $foo);
    my %order_by;
