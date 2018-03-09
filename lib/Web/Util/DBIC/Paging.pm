@@ -249,7 +249,7 @@ for a plain hashref.
 
 =head2 C<page_and_sort>
 
- my $result = page_and_sort(c => $c, $c->model('DB::Foo'));
+ my $result_rs  = page_and_sort(c => $c, $c->model('DB::Foo'));
 
 This is a helper method that will first L<sort|/sort_rs> your data and
 then L</paginate> it.  Valid configuration parameters are documented for each
@@ -257,7 +257,7 @@ of those methods.
 
 =head2 paginate
 
- my $result = paginate(c => $c, $c->model('DB::Foo'));
+ my $result_rs  = paginate(c => $c, $c->model('DB::Foo'));
 
 Paginates the passed in resultset based on the following parameters:
 
@@ -315,7 +315,7 @@ L</simple_search> instead.
 
 =head2 sort_rs
 
- my $result = sort_rs(c => $c, $c->model('DB::Foo'));
+ my $result_rs  = sort_rs(c => $c, $c->model('DB::Foo'));
 
 Exactly the same as L</search>, except calls C<controller_sort> or L</simple_sort>.
 Here is how I use it:
@@ -365,7 +365,7 @@ Here is how I use it:
 
 =head2 simple_deletion
 
- simple_deletion(c => $c, $c->model('DB::Foo'));
+ my $deleted_ids = simple_deletion(c => $c, $c->model('DB::Foo'));
 
 Deletes from the passed in resultset based on the sole CGI parameter,
 C<to_delete>, which must be a list of primary keys.
