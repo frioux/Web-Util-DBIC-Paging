@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.001004  2018-03-09 15:14:46-06:00 America/Chicago
  - ensure that the value passed was indeed a ResultSet
  - better examples in documentation
 
