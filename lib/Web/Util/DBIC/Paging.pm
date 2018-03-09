@@ -397,7 +397,8 @@ Sorts the passed in resultset based on the following CGI parameters:
 
 =over 2
 
-=item C<sort> field to sort by, defaults to primarky key
+=item C<sort> field to sort by, defaults to primary key
+
 =item C<dir> direction to sort
 
 =back
