@@ -282,22 +282,16 @@ method look something like the following:
 
  # Base search dispatcher, defined in MyApp::Schema::ResultSet
  sub _build_search {
-    my $self           = shift;
-    my $dispatch_table = shift;
-    my $q              = shift;
-
-    my %search = ();
-    my %meta   = ();
+    my ($rs, $dispatch_table, $q) = @_;
 
     foreach ( keys %{$q} ) {
        if ( my $fn = $dispatch_table->{$_} and $q->{$_} ) {
-          my ( $tmp_search, $tmp_meta ) = $fn->( $q->{$_} );
-          %search = ( %search, %{$tmp_search||{}} );
-          %meta   = ( %meta,   %{$tmp_meta||{}} );
+          my ( $search, $meta ) = $fn->( $q->{$_} );
+          $rs = $rs->search($search, $meta);
        }
     }
 
-    return $self->search(\%search, \%meta);
+    return $rs;
  }
 
  # search method in specific resultset
@@ -328,10 +322,7 @@ Here is how I use it:
 
  # Base sort dispatcher, defined in MyApp::Schema::ResultSet
  sub _build_sort {
-    my $self = shift;
-    my $dispatch_table = shift;
-    my $default = shift;
-    my $q = shift;
+    my ($self, $dispatch_table, $default, $q) = @_;
 
     my %search = ();
     my %meta   = ();
